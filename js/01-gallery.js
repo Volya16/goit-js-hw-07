@@ -7,7 +7,7 @@ const container = document.querySelector(".gallery");
 const markup = createMarkup(galleryItems);
 
 container.insertAdjacentHTML("beforeend", markup);
-container.addEventListener("click", handleClick);
+container.addEventListener("click", handleItemClick);
 
 function createMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
@@ -23,3 +23,18 @@ function createMarkup(galleryItems) {
 </li>`}).join("")
 }
 
+function handleItemClick(event) {
+    if (event.target === event.currentTarget) {
+        return;
+    }
+    const targetElement = event.target.closest(".gallery__item");
+    event.preventDefault();
+
+    const instance = basicLightbox.create(
+        <div class="modal">
+<img scr="${preview}" />
+        </div>
+    );
+} 
+
+// Pharao X Junior Textile 2.0 mottoradhandschuhe
