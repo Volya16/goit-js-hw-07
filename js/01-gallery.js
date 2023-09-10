@@ -36,5 +36,3 @@ function handleItemClick(event) {
         </div>
     );
 } 
-
-// Pharao X Junior Textile 2.0 mottoradhandschuhe
