@@ -7,7 +7,6 @@ const galleryList = document.querySelector(".gallery");
 const markup = createMarkup(galleryItems);
 
 galleryList.insertAdjacentHTML("beforeend", markup);
-galleryList.addEventListener("click", handleClick);
 
 function createMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
@@ -23,20 +22,28 @@ function createMarkup(galleryItems) {
 </li>`}).join("")
 }
 
+galleryList.addEventListener("click", handleClick);
+
 function handleClick(event) {
   event.preventDefault();
-  if (event.target.nodeName === "UL") {
+  if (event.target.nodeName !== "IMG") {
     return;
   } 
-  const targetElement = event.target.closest('.gallery__item');
-  const dataPreview = event.target.dataset.source;
-  const imgDesc = event.target.alt;
+  // const dataPreview = event.target.dataset.source;
+  // const imgDesc = event.target.alt;
 
   const instance = basicLightbox.create(`
     <div class="modal">
-      <img src=${dataPreview} alt=${imgDesc}/>
+      <img src=${event.target.dataset.source} alt=${event.target.alt}/>
     </div>
   `)
   instance.show();
+
+  galleryList.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  }); 
 }
+
 
