@@ -3,11 +3,11 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const container = document.querySelector(".gallery");
+const galleryList = document.querySelector(".gallery");
 const markup = createMarkup(galleryItems);
 
-container.insertAdjacentHTML("beforeend", markup);
-container.addEventListener("click", handleItemClick);
+galleryList.insertAdjacentHTML("beforeend", markup);
+galleryList.addEventListener("click", handleClick);
 
 function createMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
@@ -23,16 +23,20 @@ function createMarkup(galleryItems) {
 </li>`}).join("")
 }
 
-function handleItemClick(event) {
-    if (event.target === event.currentTarget) {
-        return;
-    }
-    const targetElement = event.target.closest(".gallery__item");
-    event.preventDefault();
+function handleClick(event) {
+  event.preventDefault();
+  if (event.target.nodeName === "UL") {
+    return;
+  } 
+  const targetElement = event.target.closest('.gallery__item');
+  const dataPreview = event.target.dataset.source;
+  const imgDesc = event.target.alt;
 
-    const instance = basicLightbox.create(
-        <div class="modal">
-<img scr="${preview}" />
-        </div>
-    );
-} 
+  const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src=${dataPreview} alt=${imgDesc}/>
+    </div>
+  `)
+  instance.show();
+}
+
