@@ -22,3 +22,10 @@ function createMarkup(galleryItems) {
     })
     .join("");
 }
+
+const lightboxModal = new SimpleLightbox('gallery a',
+    {
+    optionsData: 'alt',
+    optionsPosition: 'bottom',
+    captionDetay: 250,
+});
