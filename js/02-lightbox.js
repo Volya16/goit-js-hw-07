@@ -25,7 +25,7 @@ function createMarkup(galleryItems) {
 
 const lightboxModal = new SimpleLightbox('.gallery a',
     {
-    optionsData: 'alt',
+    optionsData: "alt",
     optionsPosition: 'bottom',
     captionDetay: 250,
 });
