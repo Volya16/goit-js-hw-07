@@ -32,14 +32,13 @@ function handleClick(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  // const dataPreview = event.target.dataset.source;
-  // const imgDesc = event.target.alt;
 
   const instance = basicLightbox.create(`
     <div class="modal">
       <img src=${event.target.dataset.source} alt=${event.target.alt}/>
     </div>
-  `);
+  ` {
+  });
   instance.show();
 
   galleryList.addEventListener("keydown", (event) => {
