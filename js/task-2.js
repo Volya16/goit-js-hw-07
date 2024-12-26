@@ -27,13 +27,21 @@ const images = [
 
 const galleryListEl = document.querySelector(".gallery");
 
-const createGalleryCard = cardInfo => {
-    return `
-    <li class="gallery-item">
-    <img class="gallery-img" src="${cardInfo.url}" alt="${cardInfo.alt}">
-    </li>`
-};
 
-const galleryCardsTemplate = images.map((img) => createGalleryCard(img)).join("");
+// First version
+// const createGalleryCard = cardInfo => {
+//     return `
+//     <li class="gallery-item">
+//     <img class="gallery-img" src="${cardInfo.url}" alt="${cardInfo.alt}">
+//     </li>`
+// };
 
-galleryListEl.innerHTML = galleryCardsTemplate;
+// const galleryCardsTemplate = images.map((img) => createGalleryCard(img)).join("");
+
+// galleryListEl.innerHTML = galleryCardsTemplate;
+
+
+// Second version
+galleryListEl.insertAdjacentHTML(
+  'afterbegin', images.map(img => `<li class="gallery-item"><img class="gallery-img" src="${img.url}" alt="${img.alt}"></li>`
+).join(""));
